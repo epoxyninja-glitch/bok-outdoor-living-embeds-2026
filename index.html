@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>BOK Outdoor Living Planning Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,700;0,800;0,900;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./estimator.css" />
+  </head>
+  <body>
+    <main class="estimator-shell" aria-labelledby="estimator-title">
+      <div class="brand-bar">
+        <a class="brand-lockup" href="https://bokdesignbuild.com/" target="_top" aria-label="BOK Design Build home">
+          <span class="brand-name">BOK<small>Design Build</small></span>
+        </a>
+        <a class="phone-link" href="tel:+15613051106">Call 561.305.1106</a>
+      </div>
+
+      <section class="hero-grid">
+        <div class="intro">
+          <span class="eyebrow">South Florida outdoor living</span>
+          <h1 id="estimator-title">Start with a<br /><em>smart plan.</em></h1>
+          <p class="intro-copy">Get a clear first planning range for a pergola, or start a tailored conversation for an outdoor kitchen. This tool is built for the early questions—before the site conditions, finishes, utilities, and final scope are known.</p>
+          <div class="proof-points" aria-label="Estimator highlights">
+            <div class="proof-point"><b>Pergolas</b><span>Material and size planning inputs</span></div>
+            <div class="proof-point"><b>Outdoor kitchens</b><span>Tailored project conversation</span></div>
+            <div class="proof-point"><b>Outdoor living</b><span>Built around how you gather</span></div>
+          </div>
+        </div>
+
+        <section class="estimator-card" aria-labelledby="card-title">
+          <div class="estimator-card__head">
+            <div>
+              <span class="card-kicker">Private planning tool</span>
+              <h2 id="card-title">Build your starting point</h2>
+            </div>
+            <span class="estimate-status">Not a quote</span>
+          </div>
+
+          <div class="estimator-card__body">
+            <span class="section-label">1. What are you planning?</span>
+            <div class="choice-row" role="group" aria-label="Project type">
+              <button class="choice-button is-active" type="button" data-project="pergola" aria-pressed="true">
+                <strong>Pergola</strong>
+                <small>See an initial size-and-material planning range.</small>
+              </button>
+              <button class="choice-button" type="button" data-project="kitchen" aria-pressed="false">
+                <strong>Outdoor kitchen</strong>
+                <small>Begin a tailored conversation—no generic price guess.</small>
+              </button>
+            </div>
+
+            <div class="input-section">
+              <div class="sqft-label-row">
+                <span class="section-label" id="sqft-label">2. Approximate project area</span>
+                <p id="sqft-helper">Adjust to the closest usable square footage.</p>
+              </div>
+              <div class="sqft-control">
+                <input id="square-feet-range" type="range" min="80" max="2000" step="10" value="320" aria-labelledby="sqft-label" aria-describedby="sqft-helper" />
+                <input class="number-input" id="square-feet-number" type="number" min="80" max="5000" step="10" value="320" inputmode="numeric" aria-label="Approximate project area in square feet" />
+              </div>
+            </div>
+
+            <div class="material-section pergola-only" id="material-section">
+              <span class="section-label">3. Select a material</span>
+              <div class="material-grid" role="group" aria-label="Pergola material">
+                <button class="material-card is-active" type="button" data-material="aluminum" aria-pressed="true">
+                  <strong>Aluminum <span>$60/sq ft</span></strong>
+                  <small>Provisional planning input. Final scope may vary by design and site.</small>
+                </button>
+                <button class="material-card" type="button" data-material="wood" aria-pressed="false">
+                  <strong>Wood <span>$45/sq ft</span></strong>
+                  <small>Provisional planning input. Final scope may vary by design and site.</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="estimate-panel" id="estimate-panel" aria-live="polite">
+              <span class="estimate-panel__label" id="estimate-label">Initial pergola planning range</span>
+              <strong class="estimate-range" id="estimate-range">$17,650–$21,100</strong>
+              <p class="estimate-context" id="estimate-context">Based on an Aluminum Pergola planning input of $60/sq ft for 320 sq ft. A site review is needed to confirm the final scope.</p>
+            </div>
+            <p class="disclaimer" id="estimate-disclaimer">This planning range is not a final quote and does not establish pricing. Permitting, engineering, electrical, lighting, site preparation, finishes, appliances, utilities, and project-specific conditions may affect the final scope.</p>
+
+            <section class="lead-section" aria-labelledby="lead-title">
+              <span class="section-label" id="lead-title">4. Send your project starting point</span>
+              <p class="lead-intro">Enter your details to prepare a project summary before you use the existing site contact form. This staging tool does not send or store your information.</p>
+              <form class="lead-form" id="lead-form" novalidate>
+                <div class="field">
+                  <label for="lead-name">Name</label>
+                  <input id="lead-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name" />
+                </div>
+                <div class="field">
+                  <label for="lead-phone">Phone</label>
+                  <input id="lead-phone" name="phone" autocomplete="tel" type="tel" required maxlength="50" placeholder="Best number" />
+                </div>
+                <div class="field field--wide">
+                  <label for="lead-email">Email</label>
+                  <input id="lead-email" name="email" autocomplete="email" type="email" required maxlength="120" placeholder="you@example.com" />
+                </div>
+                <div class="field field--wide">
+                  <label for="lead-notes">Project notes <span>(optional)</span></label>
+                  <textarea id="lead-notes" name="notes" maxlength="320" placeholder="Tell us about the yard, desired features, or timing."></textarea>
+                </div>
+                <div class="form-actions">
+                  <button class="button" type="submit">Prepare my inquiry</button>
+                  <p class="form-note">Your details are used only to pre-fill the inquiry on this device. This staging version does not store submissions.</p>
+                </div>
+              </form>
+              <div class="handoff" id="handoff" aria-live="polite">
+                <p>Your project summary is ready. Copy it, then complete the existing site contact form when you are ready to submit.</p>
+                <div class="handoff-actions">
+                  <a id="contact-form-link" href="https://bokdesignbuild.com/" target="_top" rel="noopener">Open the site contact form</a>
+                  <button class="button button--secondary" id="copy-inquiry" type="button">Copy project summary</button>
+                  <p class="copy-status" id="copy-status" role="status" hidden></p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="./estimator.js"></script>
+  </body>
+</html>
