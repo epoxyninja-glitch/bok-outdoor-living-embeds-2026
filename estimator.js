@@ -135,7 +135,7 @@ elements.copyButton.addEventListener("click", async () => {
     fallback.remove();
   }
 
-  elements.copyStatus.textContent = "Project summary copied. Paste it into the existing contact form when you are ready.";
+  elements.copyStatus.textContent = "Project summary copied. Scroll to the contact form below, paste it in, and send it to BOK when you are ready.";
   elements.copyStatus.hidden = false;
 });
 

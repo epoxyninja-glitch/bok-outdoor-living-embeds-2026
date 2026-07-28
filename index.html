@@ -14,7 +14,7 @@
     <main class="estimator-shell" aria-labelledby="estimator-title">
       <div class="brand-bar">
         <a class="brand-lockup" href="https://bokdesignbuild.com/" target="_top" aria-label="BOK Design Build home">
-          <span class="brand-name">BOK<small>Design Build</small></span>
+          <img class="brand-logo" src="./assets/bok-official-logo-header.png" alt="BOK Design Build — 561.305.1106" />
         </a>
         <a class="phone-link" href="tel:+15613051106">Call 561.305.1106</a>
       </div>
@@ -87,34 +87,33 @@
 
             <section class="lead-section" aria-labelledby="lead-title">
               <span class="section-label" id="lead-title">4. Send your project starting point</span>
-              <p class="lead-intro">Enter your details to prepare a project summary before you use the existing site contact form. This staging tool does not send or store your information.</p>
+              <p class="lead-intro">Enter your details and we'll build your project summary. Copy it into the contact form below to send it to BOK.</p>
               <form class="lead-form" id="lead-form" novalidate>
                 <div class="field">
                   <label for="lead-name">Name</label>
-                  <input id="lead-name" name="name" autocomplete="name" required maxlength="80" placeholder="Your name" />
+                  <input id="lead-name" name="name" autocomplete="name" required maxlength="80" />
                 </div>
                 <div class="field">
                   <label for="lead-phone">Phone</label>
-                  <input id="lead-phone" name="phone" autocomplete="tel" type="tel" required maxlength="50" placeholder="Best number" />
+                  <input id="lead-phone" name="phone" autocomplete="tel" type="tel" required maxlength="50" />
                 </div>
                 <div class="field field--wide">
                   <label for="lead-email">Email</label>
-                  <input id="lead-email" name="email" autocomplete="email" type="email" required maxlength="120" placeholder="you@example.com" />
+                  <input id="lead-email" name="email" autocomplete="email" type="email" required maxlength="120" />
                 </div>
                 <div class="field field--wide">
                   <label for="lead-notes">Project notes <span>(optional)</span></label>
-                  <textarea id="lead-notes" name="notes" maxlength="320" placeholder="Tell us about the yard, desired features, or timing."></textarea>
+                  <textarea id="lead-notes" name="notes" maxlength="320"></textarea>
                 </div>
                 <div class="form-actions">
                   <button class="button" type="submit">Prepare my inquiry</button>
-                  <p class="form-note">Your details are used only to pre-fill the inquiry on this device. This staging version does not store submissions.</p>
+                  <p class="form-note">Your details stay on your device until you send them.</p>
                 </div>
               </form>
               <div class="handoff" id="handoff" aria-live="polite">
-                <p>Your project summary is ready. Copy it, then complete the existing site contact form when you are ready to submit.</p>
+                <p>Your project summary is ready. Copy it, then scroll to the contact form below to send it to BOK.</p>
                 <div class="handoff-actions">
-                  <a id="contact-form-link" href="https://bokdesignbuild.com/" target="_top" rel="noopener">Open the site contact form</a>
-                  <button class="button button--secondary" id="copy-inquiry" type="button">Copy project summary</button>
+                  <button class="button button--secondary" id="copy-inquiry" type="button">Copy Summary — Then Scroll to the Form Below</button>
                   <p class="copy-status" id="copy-status" role="status" hidden></p>
                 </div>
               </div>
