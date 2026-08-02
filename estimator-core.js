@@ -77,14 +77,20 @@ export function createLeadMessage({
   const projectNotes = cleanField(notes, 320) || "No additional notes provided.";
 
   if (projectType === "kitchen") {
+    const kitchenEstimate = calculateKitchenPlanningRange({
+      counterSquareFeet: squareFeet,
+      grill: material,
+    });
     return [
-      "Outdoor kitchen consultation request",
+      "Outdoor kitchen planning request",
       `Name: ${friendlyName}`,
       `Phone: ${contactPhone}`,
       `Email: ${contactEmail}`,
-      `Approx. project area: ${normaliseSquareFeet(squareFeet).toLocaleString()} sq ft`,
+      `Approx. counter/island area: ${kitchenEstimate.counterSquareFeet.toLocaleString()} sq ft`,
+      `Grill selection: ${kitchenEstimate.grillLabel}`,
+      `Planning range shown: ${formatCurrency(kitchenEstimate.low)}\u2013${formatCurrency(kitchenEstimate.high)}`,
       `Project notes: ${projectNotes}`,
-      "Please follow up with a tailored planning conversation.",
+      "I understand plumbing, electrical, doors/drawers, tile or stone cladding, and site conditions are quoted after a site review, and this is an initial planning range, not a final quote.",
     ].join("\n");
   }
 
@@ -102,4 +108,54 @@ export function createLeadMessage({
     `Project notes: ${projectNotes}`,
     "I understand this is an initial planning range, not a final quote.",
   ].join("\n");
+}
+
+/* ---- Outdoor kitchen planning (added Aug 2026, client pricing) ---- */
+
+export const KITCHEN_PRICING = Object.freeze({
+  structurePerSqIn: 1.25,
+  graniteFabPerSqIn: 0.25,
+  granitePerSlab: 1200,
+  slabYieldSqFt: 40,
+});
+
+export const KITCHEN_GRILLS = Object.freeze({
+  none: { label: "No grill yet", price: 0 },
+  napoleon: { label: 'Napoleon 32" (700 Series)', price: 2200 },
+  deltaheat: { label: 'Delta Heat 32"', price: 3200 },
+  twineagles: { label: 'Twin Eagles 30"', price: 5900 },
+});
+
+export const COUNTER_LIMITS = Object.freeze({
+  min: 20,
+  max: 300,
+  default: 60,
+});
+
+export function normaliseCounterSquareFeet(value) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) return COUNTER_LIMITS.default;
+  return Math.min(COUNTER_LIMITS.max, Math.max(COUNTER_LIMITS.min, Math.round(numericValue)));
+}
+
+export function calculateKitchenPlanningRange({ counterSquareFeet, grill }) {
+  const grillKey = grill in KITCHEN_GRILLS ? grill : "none";
+  const sqFt = normaliseCounterSquareFeet(counterSquareFeet);
+  const sqIn = sqFt * 144;
+  const structure = sqIn * KITCHEN_PRICING.structurePerSqIn;
+  const graniteFab = sqIn * KITCHEN_PRICING.graniteFabPerSqIn;
+  const slabs = Math.max(1, Math.ceil(sqFt / KITCHEN_PRICING.slabYieldSqFt));
+  const graniteMaterial = slabs * KITCHEN_PRICING.granitePerSlab;
+  const grillPrice = KITCHEN_GRILLS[grillKey].price;
+  const startingPoint = structure + graniteFab + graniteMaterial + grillPrice;
+
+  return {
+    counterSquareFeet: sqFt,
+    grill: grillKey,
+    grillLabel: KITCHEN_GRILLS[grillKey].label,
+    slabs,
+    startingPoint,
+    low: Math.round((startingPoint * 0.92) / 50) * 50,
+    high: Math.round((startingPoint * 1.1) / 50) * 50,
+  };
 }
